@@ -21,8 +21,8 @@ grad_accum_steps=1
 entry_file=qwenvl/train/train_qwen.py
 
 # Output configuration
-run_name="multiple_codebook_ema"
-output_dir=/blob/dyb_output/icml2026/multiple_codebook_ema
+run_name="multiple_codebook_ema_scale_image_video"
+output_dir=/blob/dyb_output/icml2026/multiple_codebook_ema_scale_image_video
 export WANDB_PROJECT="icml_2026_vq_ablation"
 
 # Training arguments
@@ -30,7 +30,7 @@ args="
     --deepspeed ${deepspeed} \
     --model_name_or_path "${llm}" \
     --train_vq_wo_llm True \
-    --add_image_data False \
+    --add_image_data True \
     --add_video_data True \
     --show_data_structure True \
     --data_flatten False \
@@ -51,7 +51,7 @@ args="
     --video_min_frames 4 \
     --eval_strategy "no" \
     --save_strategy "steps" \
-    --save_steps 10000 \
+    --save_steps 50000 \
     --save_total_limit 100 \
     --learning_rate ${lr} \
     --weight_decay 0 \
@@ -69,8 +69,8 @@ args="
 torchrun --nnodes=4 \
          --nproc_per_node=8 \
          --node_rank=2 \
-         --master_addr=100.64.32.74 \
-         --master_port=29500 \
+         --master_addr=100.65.60.122 \
+         --master_port=31000 \
          ${entry_file} ${args}
 
 python /blob/thinking.py
