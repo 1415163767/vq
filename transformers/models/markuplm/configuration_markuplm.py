@@ -12,18 +12,13 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-""" MarkupLM model configuration"""
+"""MarkupLM model configuration"""
 
 from ...configuration_utils import PretrainedConfig
 from ...utils import logging
 
 
 logger = logging.get_logger(__name__)
-
-MARKUPLM_PRETRAINED_CONFIG_ARCHIVE_MAP = {
-    "microsoft/markuplm-base": "https://huggingface.co/microsoft/markuplm-base/resolve/main/config.json",
-    "microsoft/markuplm-large": "https://huggingface.co/microsoft/markuplm-large/resolve/main/config.json",
-}
 
 
 class MarkupLMConfig(PretrainedConfig):
@@ -123,7 +118,6 @@ class MarkupLMConfig(PretrainedConfig):
         subs_pad_id=1001,
         xpath_unit_hidden_size=32,
         max_depth=50,
-        position_embedding_type="absolute",
         use_cache=True,
         classifier_dropout=None,
         **kwargs,
@@ -146,7 +140,6 @@ class MarkupLMConfig(PretrainedConfig):
         self.type_vocab_size = type_vocab_size
         self.initializer_range = initializer_range
         self.layer_norm_eps = layer_norm_eps
-        self.position_embedding_type = position_embedding_type
         self.use_cache = use_cache
         self.classifier_dropout = classifier_dropout
         # additional properties
@@ -156,3 +149,6 @@ class MarkupLMConfig(PretrainedConfig):
         self.tag_pad_id = tag_pad_id
         self.subs_pad_id = subs_pad_id
         self.xpath_unit_hidden_size = xpath_unit_hidden_size
+
+
+__all__ = ["MarkupLMConfig"]
