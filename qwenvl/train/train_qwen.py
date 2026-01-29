@@ -152,13 +152,13 @@ def new_visual_forward(self, pixel_values, pixel_values_videos, image_grid_thw, 
             )
             info = f"vq_{layer_num // 5 - 1}"   # [5, 11, 17]
             vq_module = getattr(self, info)
-            if deepstack_feature.shape[0] == 288:
+            if deepstack_feature.shape[0] == 144:
                 deepstack_feature = deepstack_feature.repeat(31, 1, 1).view(-1, 2048)
                 info += "_repeat_image"
             _, codebook_loss = vq_module(deepstack_feature, is_image=is_image, info=info)
 
     hidden_states = self.merger(hidden_states)
-    if hidden_states.shape[0] == 288:
+    if hidden_states.shape[0] == 144:
         hidden_states = hidden_states.repeat(31, 1, 1).view(-1, 2048)
     hidden_states, codebook_loss = self.vq(hidden_states, is_image=is_image)
 
