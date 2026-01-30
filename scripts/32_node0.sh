@@ -57,7 +57,7 @@ args="
     --warmup_ratio 0.03 \
     --max_grad_norm 1 \
     --lr_scheduler_type "cosine" \
-    --logging_steps 20 \
+    --logging_steps 200 \
     --model_max_length 32768 \
     --gradient_checkpointing True \
     --dataloader_num_workers 4 \
