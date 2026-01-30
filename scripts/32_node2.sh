@@ -27,7 +27,6 @@ export WANDB_PROJECT="icml_2026_vq_ablation"
 
 # Training arguments
 args="
-    --deepspeed ${deepspeed} \
     --model_name_or_path "${llm}" \
     --train_vq_wo_llm True \
     --add_image_data True \
