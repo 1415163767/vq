@@ -164,7 +164,7 @@ def new_visual_forward(self, pixel_values, pixel_values_videos, image_grid_thw, 
         hidden_states = hidden_states.unsqueeze(0).expand(31, -1, -1).reshape(-1, 2048)
     hidden_states, codebook_loss = self.vq(hidden_states, is_image=is_image)
 
-    hidden_states = hidden_states + 0 * self.vq.dummy
+    hidden_states = None
     loss = codebook_loss["loss"] + 0 * self.vq.dummy
 
     return loss, hidden_states
