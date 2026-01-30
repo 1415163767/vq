@@ -210,28 +210,8 @@ def preprocess_qwen_visual(
     full_result = processor.apply_chat_template(
         messages, task='generation', tokenize=True, return_dict=True, return_tensors="pt"
     )
-    input_ids = full_result["input_ids"]
-    if isinstance(input_ids, list):
-        input_ids = torch.tensor(input_ids).unsqueeze(0)
-    labels = torch.full_like(input_ids, IGNORE_INDEX)
-    input_ids_flat = input_ids[0].tolist()
-    L = len(input_ids_flat)
-    pos = 0
-    while pos < L:
-        if input_ids_flat[pos] == 77091:
-            ans_start = pos + 2
-            ans_end = ans_start
-            while ans_end < L and input_ids_flat[ans_end] != 151645:
-                ans_end += 1
-            if ans_end < L:
-                labels[0, ans_start : ans_end + 2] = input_ids[
-                    0, ans_start : ans_end + 2
-                ]
-                pos = ans_end
-        pos += 1
-
-    full_result["labels"] = labels
-    full_result["input_ids"] = input_ids
+    full_result["labels"] = None
+    full_result["input_ids"] = None
     return full_result
 
 
