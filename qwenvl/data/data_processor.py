@@ -210,8 +210,8 @@ def preprocess_qwen_visual(
     full_result = processor.apply_chat_template(
         messages, task='generation', tokenize=True, return_dict=True, return_tensors="pt"
     )
-    full_result["labels"] = None
-    full_result["input_ids"] = None
+    full_result.pop("labels", None)
+    full_result.pop("input_ids", None)
     return full_result
 
 
