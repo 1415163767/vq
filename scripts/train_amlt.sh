@@ -50,7 +50,7 @@ args="
     --video_min_frames 4 \
     --eval_strategy "no" \
     --save_strategy "steps" \
-    --save_steps 50000 \
+    --save_steps 30000 \
     --save_total_limit 100 \
     --learning_rate ${lr} \
     --weight_decay 0 \
