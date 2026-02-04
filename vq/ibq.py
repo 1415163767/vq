@@ -31,7 +31,7 @@ class new_IBQ(nn.Module):
         self._last_unique_count = 0
         self._last_total_count = 0
 
-        self.is_resume = False
+        self.is_resume = True
         self.is_train = True
 
 
